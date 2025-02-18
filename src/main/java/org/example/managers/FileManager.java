@@ -6,7 +6,6 @@ import org.example.exceptions.InvalidDataException;
 import org.example.mainClasses.MusicBand;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class FileManager {
