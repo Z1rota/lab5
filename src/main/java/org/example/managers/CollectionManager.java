@@ -104,7 +104,10 @@ public class CollectionManager {
     }
 
     public Stack shuffle() throws EmptyCollectionException {
-        List<MusicBand> newCollection = this.bands.stream().toList();
+        List<MusicBand> newCollection = new ArrayList<>();
+        for (MusicBand band : this.bands) {
+            newCollection.add(band);
+        }
         Collections.shuffle(newCollection);
         Stack<MusicBand> shuffled = new Stack<MusicBand>();
         return shuffled;

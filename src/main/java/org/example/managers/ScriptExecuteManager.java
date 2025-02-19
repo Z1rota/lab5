@@ -5,6 +5,7 @@ import org.example.utility.Reader;
 import java.io.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.HashSet;
 
 
 public class ScriptExecuteManager implements Reader {
@@ -30,7 +31,7 @@ public static String readfile() throws IOException {
     }
 
     public static boolean IsRepeat(String filePath) {
-        return filepath.contains(new File(filePath).getPath());
+    return filepath.contains(filePath.trim());
     }
 
     @Override

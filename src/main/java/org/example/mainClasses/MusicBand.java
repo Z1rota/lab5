@@ -80,4 +80,20 @@ public class MusicBand implements Validatable, Comparable<MusicBand> {
     public int compareTo(MusicBand o) {
         return (int) (this.id - o.id);
     }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public MusicGenre getGenre() {
+        return this.genre;
+    }
+
+    public int getNumberOfParticipants() {
+        return this.numberOfParticipants;
+    }
+
+    public Coordinates getCoordinates() {
+        return this.coordinates;
+    }
 }

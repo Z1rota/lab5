@@ -12,4 +12,11 @@ public class Coordinates {
     public String toString() {
         return x + ";" + y;
     }
+
+    public double getX() {
+        return x;
+    }
+    public long getY() {
+        return y;
+    }
 }

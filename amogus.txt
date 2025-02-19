@@ -1,3 +1,4 @@
 show
 show
 info
+execute_script sugoma.txt

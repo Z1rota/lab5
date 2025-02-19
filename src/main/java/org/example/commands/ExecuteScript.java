@@ -13,6 +13,7 @@ public class ExecuteScript extends Command {
     private final CommandManager commandManager;
 
 
+
     public ExecuteScript(CommandManager commandManager) {
         super("execute_script", "execute_script file_name : " +
                 "считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, " +
@@ -26,6 +27,9 @@ public class ExecuteScript extends Command {
         try {
             FileMode.setFileMode(true);
             ScriptExecuteManager.pushFile(path);
+            if (ScriptExecuteManager.readfile() == null) {
+                System.err.println("Файл пустой!");
+            }
             for (String line = ScriptExecuteManager.readfile(); line != null; line = ScriptExecuteManager.readfile()) {
                 try{
                     String[] cmd = (line + " ").split(" ", 2);

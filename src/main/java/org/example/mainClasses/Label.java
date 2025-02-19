@@ -41,5 +41,13 @@ public class Label implements Comparable<Label> {
     public int hashCode() {
         return Objects.hash(name, bands, sales);
     }
+
+    public int getBands() {
+        return this.bands;
+    }
+
+    public long getSales() {
+        return this.sales;
+    }
 }
 
