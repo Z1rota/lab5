@@ -110,7 +110,7 @@ public abstract class Builder {
             input =scanner.nextLine();
             try {
                 if (Long.parseLong(input) <= 0) {
-                    System.err.println("Значение должно быть 0!");
+                    System.err.println("Значение должно быть  больше 0!");
                 } else {
                     return Long.parseLong(input);
                 }

@@ -8,7 +8,7 @@ import org.example.managers.CollectionManager;
 public class UpdateId extends Command{
     private final CollectionManager collectionManager;
     public UpdateId(CollectionManager collectionManager) {
-        super("update_id", "update id {element} : обновить значение элемента коллекции, id которого равен заданному");
+        super("update", "update id {element} : обновить значение элемента коллекции, id которого равен заданному");
         this.collectionManager = collectionManager;
     }
 

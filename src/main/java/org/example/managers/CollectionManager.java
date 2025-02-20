@@ -42,11 +42,18 @@ public class CollectionManager {
         return this.date;
     }
 
-    public boolean CheckId() {
+    public boolean checkId(MusicBand musicBand) {
         for (int i = 0; i < bands.size(); i++) {
-            if (bands.get(i).getId() == bands.get(i+1).getId()) {
+            if (musicBand.getId() == (bands.get(i).getId())) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    public boolean checkSameId() {
+        for (int i = 0; i < bands.size()-1 ; i++) {
+            if (bands.get(i).getId() == bands.get(i).getId()) return false;
         }
         return true;
     }
@@ -60,14 +67,17 @@ public class CollectionManager {
     }
 
 
+
     public void add(MusicBand band) throws InvalidDataException {
         if (!(band.validate())) {
             throw new InvalidDataException();
-        }else {
+        }while (!checkId(band)) {
+            MusicBand.idcounter++;
+            band.setId(MusicBand.idcounter);
+        }
             bands.add(band);
         }
 
-    }
 
     public MusicBand getById(long id) {
         for (MusicBand band : bands) { if (band.getId() == id) return band;}
@@ -82,10 +92,10 @@ public class CollectionManager {
         return band == null || getById(band.getId()) != null;
     }
     public void clear() throws AlreadyEmptyException {
+        AlreadyEmptyException AlreadyEmptyException = new AlreadyEmptyException();
         if (bands.size() != 0) {
             bands.clear();
-        }
-        throw new AlreadyEmptyException();
+        } else throw AlreadyEmptyException;
     }
 
     public LocalDate getDate() {
@@ -155,14 +165,16 @@ public class CollectionManager {
     }
 
     public void removeAt(int num) throws NoElementException, NumberFormatException {
-        for (MusicBand band : bands) {
-            if (bands.indexOf(band) == num) {
-                bands.remove(band);
+        if (!bands.isEmpty()) {
+            for (MusicBand band : bands) {
+                if (bands.indexOf(band) == num) {
+                    bands.remove(band);
+                } else throw new NoElementException();
             }
         }
     }
+    }
 
-}
 
 
 

@@ -15,7 +15,7 @@ public class MusicBand implements Validatable, Comparable<MusicBand> {
     private Date establishmentDate; //Поле может быть null
     private MusicGenre genre; //Поле может быть null
     private Label label; //Поле не может быть null
-    private static long idcounter=1;
+    public static long idcounter=1;
 
     public MusicBand( String name, Coordinates coordinates, LocalDateTime creationDate,
                      Integer numberOfParticipants, Date establishmentDate, MusicGenre genre, Label label) {

@@ -34,7 +34,7 @@ public class FileManager {
             CollectionManager commandsWithObjects = new CollectionManager();
             collectionManager.addElem(temp);
             for (int i = 0; i < commandsWithObjects.getBands().size() - 1; i++) {
-                    if (!commandsWithObjects.CheckId()) {
+                    if (!commandsWithObjects.checkSameId()) {
                         System.err.println("у объектов повторяется id");
                         System.exit(1);
                     }
@@ -45,6 +45,8 @@ public class FileManager {
             System.err.println("Файл не найден. Возможно, указан неверный путь.");
         } catch (InvalidDataException e) {
             System.err.println("Введены неверные данные,не удалось загрузить коллекцию");
+        } catch (IOException e) {
+            System.err.println("Неверный формат файла, должен быть файл формата .xml");
         }
 
 

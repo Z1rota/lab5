@@ -13,6 +13,6 @@ public class Exit extends Command {
 
     @Override
     public void execute(String args) {
-        System.exit(228);
+        System.exit(0);
     }
 }
