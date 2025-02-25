@@ -127,7 +127,9 @@ public abstract class Builder {
             System.out.println("Введите: " + name);
             input = scanner.nextLine();
             try {
-                if (Long.parseLong(input) > 968) {
+                if (Long.parseLong(input) > 968 && FileMode.isFileMode) {
+                    return (long) 968;
+                }else if (Long.parseLong(input) > 968) {
                     System.err.println("Значение должно быть меньше 969!");
                 } else {
                     return Long.parseLong(input);

@@ -227,7 +227,7 @@ public class CollectionManager {
      * @return новая перемешанная коллекция
      * @throws EmptyCollectionException если коллекция пуста
      */
-    public Stack<MusicBand> shuffle() throws EmptyCollectionException {
+    public void shuffle() throws EmptyCollectionException {
         if (bands.isEmpty()) {
             throw new EmptyCollectionException();
         }
@@ -235,7 +235,7 @@ public class CollectionManager {
         Collections.shuffle(newCollection);
         Stack<MusicBand> shuffled = new Stack<>();
         shuffled.addAll(newCollection);
-        return shuffled;
+        this.bands = shuffled;
     }
 
     /**

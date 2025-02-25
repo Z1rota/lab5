@@ -40,10 +40,9 @@ public class ExecuteScript extends Command {
         try {
             FileMode.setFileMode(true); // Устанавливаем режим работы с файлом
             ScriptExecuteManager.pushFile(path); // Добавляем файл в стек для обработки
-            if (ScriptExecuteManager.readfile() == null) {
-                System.err.println("Файл пустой!"); // Проверка на пустой файл
-            }
+            boolean isEmpty = true;
             for (String line = ScriptExecuteManager.readfile(); line != null; line = ScriptExecuteManager.readfile()) {
+                isEmpty = false;
                 try {
                     String[] cmd = (line + " ").split(" ", 2); // Разделяем команду и аргументы
                     if (cmd[0].isBlank()) return; // Пропускаем пустые строки
@@ -60,6 +59,9 @@ public class ExecuteScript extends Command {
                     }
                 } catch (NoSuchElementException ignored) {
                     // Игнорируем исключение, если команда не найдена
+                }
+                if (isEmpty) {
+                    System.err.println("Файл пустой!"); // Сообщение, если файл пустой
                 }
             }
             ScriptExecuteManager.popfile(); // Убираем файл из стека после завершения выполнения

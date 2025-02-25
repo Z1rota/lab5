@@ -16,6 +16,6 @@ public class LabelBuilder extends Builder {
      * @throws InvalidDataException если введенные данные некорректны
      */
     public Label create() throws InvalidDataException {
-        return new Label(buildString("name"), buildInt("int bands"), buildSales("sales"));
+        return new Label(buildString("name"), buildInt("bands"), buildSales("sales"));
     }
 }
