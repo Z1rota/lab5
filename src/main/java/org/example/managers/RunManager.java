@@ -32,6 +32,7 @@ public class RunManager {
         try {
             Scanner scanner = UserScanner.getUserScanner(); // Сканер для чтения ввода пользователя
             while (true) {
+                System.out.println("Для выведения списка комманд введите-help\nВведите команду:");
                 String input = scanner.nextLine().trim() + " "; // Чтение ввода пользователя
                 String[] command = input.split(" ", 2); // Разделение ввода на команду и аргументы
                 commandManager.execute(command[0], command[1]); // Выполнение команды

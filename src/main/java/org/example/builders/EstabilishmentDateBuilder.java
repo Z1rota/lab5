@@ -17,6 +17,9 @@ public class EstabilishmentDateBuilder extends Builder {
      * @throws InvalidDataException если введенные данные некорректны
      */
     public Date create() throws InvalidDataException {
-        return new Date(buildInt("Год"), buildMonth("Месяц(0-11)"), buildDay("День(1-31)"));
+        int year = buildInt("Год");
+        int month = buildMonth("Месяц(0-11)");
+        int day = buildDate("день",month,year);
+        return new Date(year,month,day);
     }
 }

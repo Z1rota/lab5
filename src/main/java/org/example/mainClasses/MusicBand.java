@@ -101,7 +101,10 @@ public class MusicBand implements Validatable, Comparable<MusicBand> {
                      MusicGenre genre, Label label) {
         this(name, coordinates, LocalDateTime.now(), numberOfParticipants, establishmentDate, genre, label);
         this.id = idcounter;
-        idcounter++;
+        if (validate()) {
+            idcounter++;
+        }
+
     }
 
     /**

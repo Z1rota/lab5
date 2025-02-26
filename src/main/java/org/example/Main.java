@@ -24,9 +24,6 @@ public class Main {
 
         }
 
-
-        System.out.println("для сводки по командам введите- help");
-
         commandManager.addCommand(new Add(collectionManager));
         commandManager.addCommand(new Clear(collectionManager));
         commandManager.addCommand(new ExecuteScript(commandManager));

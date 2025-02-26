@@ -6,6 +6,8 @@ import org.example.managers.ScriptExecuteManager;
 import org.example.utility.FileMode;
 import org.example.utility.Reader;
 
+import java.util.Calendar;
+
 /**
  * Абстрактный класс для построения объектов различных типов.
  * Использует Reader для ввода данных, в зависимости от режима (файловый или ручной ввод).
@@ -35,11 +37,7 @@ public abstract class Builder {
             input = scanner.nextLine();
             try {
                 Integer bands = Integer.parseInt(input);
-                if (bands < 0) {
-                    System.err.println("Число должно быть больше 0");
-                } else {
-                    return bands;
-                }
+                return bands;
             } catch (NumberFormatException e) {
                 System.err.println("Число должно быть типа Int");
             }
@@ -78,17 +76,21 @@ public abstract class Builder {
      * @return число, представляющее день
      * @throws InvalidDataException если введенные данные некорректны
      */
-    protected Integer buildDay(String name) throws InvalidDataException {
+    protected Integer buildDate(String name, int month, int year) throws InvalidDataException {
         String input;
         while (true) {
             System.out.println("Введите: " + name);
             input = scanner.nextLine();
             try {
-                Integer bands = Integer.parseInt(input);
-                if (bands < 1 || bands > 31) {
-                    System.err.println("Число должно быть больше 0 и меньше 32");
+                Integer day = Integer.parseInt(input);
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH,month);
+                calendar.set(Calendar.DAY_OF_MONTH, day);
+                    if (calendar.get(Calendar.MONTH) != month || calendar.get(Calendar.DAY_OF_MONTH) != day) {
+                    System.err.println("Некорректный день для данного месяца");
                 } else {
-                    return bands;
+                    return day;
                 }
             } catch (NumberFormatException e) {
                 System.err.println("Число должно быть типа Int");
@@ -108,9 +110,15 @@ public abstract class Builder {
             System.out.println("Введите: " + name);
             input = scanner.nextLine() + "f";
             try {
-                return Float.parseFloat(input);
+                float value = Float.parseFloat(input);
+                if (value == Float.POSITIVE_INFINITY || value == Float.NEGATIVE_INFINITY) {
+                    throw new InvalidDataException();
+                }
+                return value;
             } catch (NumberFormatException e) {
                 System.err.println("Число должно быть типа float");
+            } catch (InvalidDataException e) {
+                System.err.println("Число слишком большое");
             }
         }
     }
@@ -176,7 +184,7 @@ public abstract class Builder {
             System.out.println("Введите: " + name);
             input = scanner.nextLine();
             if (input.isBlank()) {
-                System.err.println("Строка не может быть пустой!");
+                return null;
             } else {
                 return input;
             }
